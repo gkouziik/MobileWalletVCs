@@ -1,0 +1,68 @@
+import { DefaultTheme } from 'react-native-paper';
+
+const colors = {
+    white: '#ffffff',
+    black: '#000000',
+    blue: 'rgb(0,103,187)',
+    grey: '#808080',
+    orange: '#FF652F',
+    lightGrey: '#B4CFF2',
+    purple: '#200A40',
+    vividPink: '#D53693',
+    irisDark: '#7879F1',
+    irisLight: '#A5A6F6',
+    irisPure: '#DEDEFF',
+    metallicDark: '#2B2E43',
+    metallicPearlWhite: '#FDFDFD',
+    obsidian: '#14141d',
+    candyYellow: '#FFC213',
+    candyOrange: '#F2994A',
+    candyRed: '#EB5757',
+    metallicLight: '#91919F',
+    obsidianShade: '#1E1E32',
+    lightBackgroundGrey: '#C4C4C4',
+    onixDark: '#10121F',
+    onixDeep: '#090B12',
+    // colors used only on social media login buttons
+    googleRed: '#924141',
+    cardinalTeal: '#24bdff', // TODO change the primary colors of the app
+    cardinalTealShadow: '#79ceff',
+    spaceLight: '#8390C6',
+    spaceDeep: '#323B5C',
+    cardinalBlue: '#3772FF',
+    cardinalPurple: '#7737FF',
+    facebookBlue: '#275EA4',
+    spaceDark: '#424A7D',
+    bidGreen: '#66A500',
+    buttonDelete: '#FA7373',
+    buttonNotice: '#EBC540',
+    buttonAltered: '#8978F1',
+    linearGoogleRed: '#FA7373',
+    onixShade: '#1E2235',
+    linearPurple: '#592C7C',
+    shadowPurple: '#8479ff',
+    spacePure: '#D7DEFF',
+    linearGrey: '#1b1e2b',
+    linearBlack: '#131624',
+    linearExtraBlack: '#0f101e',
+    linearPink: '#71427D',
+    shadowYellow: '#ffe179',
+    spaceShade: '#6E7EC3',
+    transparent: 'transparent',
+};
+
+const defaultTheme = {
+    ...DefaultTheme,
+    colors: {
+        ...DefaultTheme.colors,
+        ...colors,
+        primary: colors.irisDark,
+        secondary: colors.irisLight,
+        background: colors.obsidian,
+        placeholder: colors.metallicDark,
+        text: colors.metallicPearlWhite,
+        bottomSheet: '#14141D',
+    },
+};
+
+export default defaultTheme;
