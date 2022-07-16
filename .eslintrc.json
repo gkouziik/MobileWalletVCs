@@ -1,0 +1,42 @@
+{
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "react-hooks", "unused-imports"],
+
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase", "UPPER_CASE"]
+      }
+    ],
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "unused-imports/no-unused-imports": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "no-underscore-dangle": "off",
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-unused-expressions": "error"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  }
+}
