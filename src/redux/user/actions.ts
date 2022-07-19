@@ -4,8 +4,10 @@ import {
   DeleteUserTokenAction,
   SET_LOADING,
   SET_USER_TOKEN,
+  SET_WALLET_PRE_CREATION_DATA,
   SetLoadingAction,
   SetUserTokenAction,
+  SetWalletPreCreationDataPayloadType,
 } from './types';
 
 export const setUserTokenAction = (params: string): SetUserTokenAction =>
@@ -15,3 +17,6 @@ export const deleteUserTokenAction = (): DeleteUserTokenAction => simpleAction(D
 
 export const setLoadingAction = (params: boolean): SetLoadingAction =>
   simpleAction(SET_LOADING, params);
+
+export const setWalletPreCreationDataAction = (params: SetWalletPreCreationDataPayloadType) =>
+  simpleAction(SET_WALLET_PRE_CREATION_DATA);

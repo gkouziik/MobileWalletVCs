@@ -6,3 +6,7 @@ export const getReduxStateSlice = (state: RootState): UserState => state[__REDUX
 
 export const getIsLoading = (state: RootState): boolean => getReduxStateSlice(state).isLoading;
 export const getUserToken = (state: RootState): string => getReduxStateSlice(state).userToken;
+export const getUserWalletLabel = (state: RootState): string =>
+  getReduxStateSlice(state).walletLabel;
+export const getUserWalletRetrievePassword = (state: RootState): string =>
+  getReduxStateSlice(state).walletRetrievePassword;
