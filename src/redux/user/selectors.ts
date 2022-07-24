@@ -1,5 +1,5 @@
-import { UserState } from 'src/redux/user/types';
-import { RootState } from 'src/redux';
+import { UserState } from '../user/types';
+import { RootState } from '../../redux';
 
 export const __REDUX_STATE_KEY__ = 'user';
 export const getReduxStateSlice = (state: RootState): UserState => state[__REDUX_STATE_KEY__];

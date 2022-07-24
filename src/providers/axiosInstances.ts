@@ -11,9 +11,9 @@ const DELETE = 'delete';
 export const METHODS = { GET, POST, PUT, DELETE, PATCH };
 
 export const comeTogetherAxios = axios.create({
-  baseURL: 'http://1c29-87-228-188-34.ngrok.io',
+  baseURL: 'https://api.mt.vsk.gr/',
 });
-
+console.log(comeTogetherAxios, 'cometogetherAxios');
 export const request = (
   method: string,
   url: string,
@@ -28,16 +28,15 @@ export const request = (
     method: method as Method,
     url,
     cancelToken: cancelTokenSource.token,
-    data: params,
+    data: method !== METHODS.GET ? params : undefined,
     params: method === METHODS.GET ? params : undefined,
     headers,
   };
-
   const request = () =>
     withoutBase ? axiosPromiseResult(axios(config)) : axiosPromiseResult(comeTogetherAxios(config));
   return { request, cancelTokenSource };
 };
 export const setAxiosToken = (token: string): void => {
   const hasToken = token !== '';
-  comeTogetherAxios.defaults.headers.common.Authorization = hasToken ? `Bearer${token}` : '';
+  comeTogetherAxios.defaults.headers.common.Authorization = hasToken ? `Bearer ${token}` : '';
 };

@@ -28,7 +28,7 @@ const toastConfig: ToastConfig = {
 
 const App = () => {
   const { isFirstLaunch, isLoading } = useGetOnboardingStatus();
-  console.log(isFirstLaunch, isLoading);
+  console.log(isFirstLaunch, isLoading, 'edw');
   return (
     <SafeAreaProvider style={{ backgroundColor: theme.colors.onixDeep }}>
       <PaperProvider>

@@ -1,4 +1,4 @@
-import { css } from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 import { ColorsType } from '../../../styles/types';
 import theme from '../../../styles/theme';
@@ -9,8 +9,12 @@ type TextProps = {
   center?: boolean;
 };
 
+export const BodyTextRegular = styled.Text<TextProps>`
+  ${(props: TextProps) =>
+    bodyTextRegular({ color: props.color, bold: props.bold, center: props.center })}
+`;
+
 export const bodyTextRegular = ({ color, bold, center }: TextProps) => css`
-  font-family: Work Sans;
   font-style: normal;
   font-weight: ${bold ? 'bold' : 'normal'};
   font-size: 14px;

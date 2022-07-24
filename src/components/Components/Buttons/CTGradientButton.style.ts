@@ -14,7 +14,6 @@ type StyledLinearGradientType = {
 
 const titleStyle = () => css`
   color: ${(props: StyledLinearGradientType) => theme.colors[props.textColor]};
-  font-family: Compagnon;
   font-weight: 600;
   font-style: normal;
   text-transform: capitalize;

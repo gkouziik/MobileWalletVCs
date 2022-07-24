@@ -9,7 +9,9 @@ import { useFormValidation } from '../../../hooks/useFormValidation';
 import CTGradientButton from '../../../components/Components/Buttons/CTGrradientButton';
 
 import { HelperText } from 'react-native-paper';
-import userApi from '../../../providers/user';
+import { setCreateWalletAction } from '../../../redux/user';
+import { CreateWalletParamType } from '../../../providers/user/types';
+import { useAuthentication } from '../../../hooks/useAuthentcation';
 
 type WalletDetailsForm = {
   walletLabel: string;
@@ -17,6 +19,7 @@ type WalletDetailsForm = {
 };
 
 const InputsDetails: React.FC = () => {
+  const { login, logout } = useAuthentication();
   const { walletDetailsValidation } = useFormValidation();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -27,34 +30,33 @@ const InputsDetails: React.FC = () => {
     formState: { errors },
   } = useForm<WalletDetailsForm>();
 
-  const onCallback = (error?: Error) => {
-    setIsLoading(false);
+  const onCallback = async (jwtToken?: string, error?: Error) => {
     if (error) {
-      //TODO add a toast message
-      return;
+      console.log('edw to error vale toast');
     }
+    await login(jwtToken);
+    setIsLoading(false);
   };
 
-  const submitWalletDetails = async (data: WalletDetailsForm) => {
+  const submitWalletDetails = (data: WalletDetailsForm) => {
+    console.log(data);
     setIsLoading(true);
-    // const params: SetWalletPreCreationDataPayloadType = {
-    //   walletLabel: data.walletLabel,
-    //   walletRetrievePassword: data.walletRetrievePassword,
-    // };
     // dispatch(setWalletPreCreationDataAction(params));
-    const { request } = userApi.single.createWalletApi({
+    const params: CreateWalletParamType = {
       image_url: 'https://aries.ca/images/sample.png',
       key_management_mode: 'managed',
       label: 'EmployeeOne',
       wallet_dispatch_type: 'both',
-      wallet_key: 'ultra-secret-password',
-      wallet_name: 'wallet3',
+      wallet_key: data.walletRetrievePassword,
+      wallet_name: data.walletLabel,
       wallet_type: 'indy',
       wallet_webhook_urls: [],
-    });
+      onCallback,
+    };
 
-    const response = await request();
-    setIsLoading(false);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    dispatch(setCreateWalletAction(params));
   };
 
   return (
@@ -116,9 +118,8 @@ const InputsDetails: React.FC = () => {
         linearColors={['cardinalTeal', 'cardinalPurple']}
         angle={91.85}
         borderRadius={21}
-        onPress={handleSubmit(submitWalletDetails)}
+        onPress={handleSubmit((data) => submitWalletDetails(data))}
         outsetColorShadow="cardinalTealShadow"
-        accessibilityLabel="Submit Email"
         isLoading={isLoading}
       />
     </Fragment>

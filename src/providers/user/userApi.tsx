@@ -1,5 +1,7 @@
 import { METHODS, request } from '../axiosInstances';
+import { CreateWalletParamType } from './types';
 
 export default {
-  createWalletApi: (params: any) => request(METHODS.POST, '/multitenancy/wallet', { params }),
+  createWalletApi: (params: CreateWalletParamType) =>
+    request(METHODS.POST, 'multitenancy/wallet', { params }),
 };
