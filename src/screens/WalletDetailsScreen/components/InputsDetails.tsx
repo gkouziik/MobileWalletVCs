@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
-import { Text } from 'react-native';
+import { KeyboardAvoidingView, Platform, Text } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 import { InputsWrapper, WalletLabelInput } from './InputsDetails.style';
 import theme from '../../../styles/theme';
@@ -32,9 +33,22 @@ const InputsDetails: React.FC = () => {
 
   const onCallback = async (jwtToken?: string, error?: Error) => {
     if (error) {
-      console.log('edw to error vale toast');
+      Toast.show({
+        type: 'error',
+        text1: 'Oops, Something went wrong!',
+        text2: 'Please try again with a different wallet label',
+        position: 'top',
+        visibilityTime: 3000,
+      });
+    } else {
+      Toast.show({
+        type: 'info',
+        text1: 'You successfully created your Wallet!',
+        position: 'top',
+        visibilityTime: 3000,
+      });
+      await login(jwtToken);
     }
-    await login(jwtToken);
     setIsLoading(false);
   };
 
@@ -68,14 +82,14 @@ const InputsDetails: React.FC = () => {
           render={({ field }) => (
             <WalletLabelInput
               mode="outlined"
-              textContentType="emailAddress"
+              outlineColor={theme.colors.spaceLight}
               placeholderTextColor={theme.colors.spaceLight}
               error={Boolean(errors.walletLabel)}
-              theme={{ roundness: 38 }}
+              theme={{ roundness: 38, colors: { text: theme.colors.white } }}
               placeholder={'Add a label for your wallet'}
               value={field.value}
               onChangeText={(text: string) => field.onChange(text)}
-              style={{ opacity: 0.4 }}
+              style={{ opacity: 0.4, backgroundColor: theme.colors.background }}
             />
           )}
           rules={walletDetailsValidation}
@@ -91,13 +105,14 @@ const InputsDetails: React.FC = () => {
           render={({ field }) => (
             <WalletLabelInput
               mode="outlined"
+              outlineColor={theme.colors.spaceLight}
               placeholderTextColor={theme.colors.spaceLight}
               error={Boolean(errors.walletRetrievePassword)}
-              theme={{ roundness: 38 }}
+              theme={{ roundness: 38, colors: { text: theme.colors.white } }}
               placeholder={'Add a retrieve password for your wallet'}
               value={field.value}
               onChangeText={(text: string) => field.onChange(text)}
-              style={{ opacity: 0.4 }}
+              style={{ opacity: 0.4, backgroundColor: theme.colors.background }}
             />
           )}
           rules={walletDetailsValidation}
@@ -112,6 +127,7 @@ const InputsDetails: React.FC = () => {
           </HelperText>
         )}
       </InputsWrapper>
+
       <CTGradientButton
         title={'Submit'}
         size={'stretch'}

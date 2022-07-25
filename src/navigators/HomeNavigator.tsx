@@ -34,11 +34,11 @@ const HomeNavigator: React.FC<Props> = ({ initialRouteName = 'HomeScreen' }) => 
       //initialRouteName is for testing purposes only. Default value is WalletS
     >
       <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen
-        name={'ScreeToTestQRCode'}
-        component={ScreeToTestQRCode}
-        options={mainNavigatorOptions}
-      />
+      {/*<Stack.Screen*/}
+      {/*  name={'ScreeToTestQRCode'}*/}
+      {/*  component={ScreeToTestQRCode}*/}
+      {/*  options={mainNavigatorOptions}*/}
+      {/*/>*/}
     </Stack.Navigator>
   );
 };

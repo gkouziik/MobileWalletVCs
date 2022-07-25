@@ -17,8 +17,14 @@ const userPersistConfig = {
   whitelist: ['userToken', 'walletRetrievePassword', 'walletLabel'],
 };
 
+import genericModal, {
+  GenericModalActionTypes,
+  __REDUX_STATE_KEY__ as __GENERIC_MODAL_REDUX_STATE_KEY__,
+} from './genericModal';
+
 const appReducer = combineReducers({
   [__USER_REDUX_STATE_KEY__]: persistReducer(userPersistConfig, user),
+  [__GENERIC_MODAL_REDUX_STATE_KEY__]: genericModal,
 });
 
 const appReducerPersist = persistReducer(rootPersistConfig, appReducer);
@@ -37,4 +43,4 @@ export default () => {
 
 export type RootState = ReturnType<typeof appReducerPersist>;
 
-type ActionTypes = UserActionTypes;
+type ActionTypes = UserActionTypes | GenericModalActionTypes;

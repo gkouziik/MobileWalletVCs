@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import Toast, { BaseToast, ToastConfig } from 'react-native-toast-message';
+import { NavigationContainer } from '@react-navigation/native';
 
 import theme from './src/styles/theme';
 import useGetOnboardingStatus from './src/hooks/useGetOnBoardingStatus';
@@ -32,10 +33,10 @@ const App = () => {
   return (
     <SafeAreaProvider style={{ backgroundColor: theme.colors.onixDeep }}>
       <PaperProvider>
-        <Toast config={toastConfig} />
-        <WithLoadingWrapper isLoading={isLoading}>
+        <NavigationContainer>
           <MainNavigator isFirstLaunching={isFirstLaunch} />
-        </WithLoadingWrapper>
+          <Toast config={toastConfig} />
+        </NavigationContainer>
       </PaperProvider>
     </SafeAreaProvider>
   );

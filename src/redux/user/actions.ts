@@ -36,10 +36,8 @@ export const setCreateWalletAction = (params: CreateWalletParamType) => {
       dispatch(setUserTokenAction(response.token));
       setAxiosToken(response.token);
       onCallback(response.token);
-    } catch (e) {
-      // TODO toast for error
-      console.log(e);
-      onCallback(undefined, e as Error);
+    } catch (error) {
+      onCallback(undefined, error as Error);
     }
   };
 };

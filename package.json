@@ -30,6 +30,7 @@
     "react-native-camera": "^4.2.1",
     "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "^2.5.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-paper": "^4.12.2",
     "react-native-permissions": "^3.6.0",
