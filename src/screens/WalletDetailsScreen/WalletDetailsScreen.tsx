@@ -11,7 +11,6 @@ import FastImage from 'react-native-fast-image';
 
 const WalletDetailsScreen: React.FC = () => {
   const userToken = useSelector(getUserToken);
-  console.log('To evale to token', userToken);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true} />

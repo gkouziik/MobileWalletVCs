@@ -3,6 +3,7 @@ import CTGradientButton from '../Buttons/CTGrradientButton';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { H2, H4 } from '../Headings/Headings.style';
+import CTButton from '../Buttons/CTButton';
 
 export const Container = styled(KeyboardAwareScrollView).attrs({
   showsVerticalScrollIndicator: false,

@@ -14,7 +14,7 @@ const rootPersistConfig = {
 const userPersistConfig = {
   key: __USER_REDUX_STATE_KEY__,
   storage: AsyncStorage,
-  whitelist: ['userToken', 'walletRetrievePassword', 'walletLabel'],
+  whitelist: ['userToken', 'walletRetrievePassword', 'walletLabel', 'didKey'],
 };
 
 import genericModal, {

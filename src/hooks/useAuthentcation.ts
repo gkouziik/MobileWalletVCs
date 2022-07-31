@@ -3,7 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { setAxiosToken } from '../../src/providers/axiosInstances';
-import { deleteUserTokenAction, getUserToken, setUserTokenAction } from '../redux/user';
+import {
+  deleteDidKeyAction,
+  deleteUserTokenAction,
+  getUserToken,
+  setUserTokenAction,
+} from '../redux/user';
 
 type UserAuthType = {
   login: (jwtToken?: string) => void;
@@ -21,7 +26,6 @@ export const useAuthentication = (): UserAuthType => {
   const { iat, wallet_id } = userToken && jwt_decode(userToken);
 
   const login = async (jwtToken?: string) => {
-    console.log(jwtToken, 'mesa sto login');
     if (jwtToken) {
       dispatch(setUserTokenAction(jwtToken));
       setAxiosToken(jwtToken);
@@ -31,6 +35,7 @@ export const useAuthentication = (): UserAuthType => {
   const logout = async () => {
     await AsyncStorage.clear();
     dispatch(deleteUserTokenAction());
+    dispatch(deleteDidKeyAction());
     setAxiosToken('');
   };
 

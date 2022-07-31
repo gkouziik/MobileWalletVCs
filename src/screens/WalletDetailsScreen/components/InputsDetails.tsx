@@ -1,15 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
-import { KeyboardAvoidingView, Platform, Text } from 'react-native';
+import { Text } from 'react-native';
 import Toast from 'react-native-toast-message';
+import { HelperText } from 'react-native-paper';
 
 import { InputsWrapper, WalletLabelInput } from './InputsDetails.style';
 import theme from '../../../styles/theme';
 import { useFormValidation } from '../../../hooks/useFormValidation';
 import CTGradientButton from '../../../components/Components/Buttons/CTGrradientButton';
 
-import { HelperText } from 'react-native-paper';
 import { setCreateWalletAction } from '../../../redux/user';
 import { CreateWalletParamType } from '../../../providers/user/types';
 import { useAuthentication } from '../../../hooks/useAuthentcation';
@@ -53,7 +53,6 @@ const InputsDetails: React.FC = () => {
   };
 
   const submitWalletDetails = (data: WalletDetailsForm) => {
-    console.log(data);
     setIsLoading(true);
     // dispatch(setWalletPreCreationDataAction(params));
     const params: CreateWalletParamType = {
@@ -61,8 +60,8 @@ const InputsDetails: React.FC = () => {
       key_management_mode: 'managed',
       label: 'EmployeeOne',
       wallet_dispatch_type: 'both',
-      wallet_key: data.walletRetrievePassword,
-      wallet_name: data.walletLabel,
+      wallet_key: data?.walletRetrievePassword?.toLowerCase(),
+      wallet_name: data?.walletLabel?.toLowerCase(),
       wallet_type: 'indy',
       wallet_webhook_urls: [],
       onCallback,

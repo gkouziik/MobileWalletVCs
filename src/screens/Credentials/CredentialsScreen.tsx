@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar, View } from 'react-native';
 
@@ -8,6 +8,7 @@ import { BodyTextRegular } from '../../components/Components/BodyTexts/BodyTexts
 
 const CredentialsScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
+  const [isLoading, setIsLoading] = useState<boolean>(true); // initial is loading local state
 
   return (
     <ScreenContainer insets={insets}>

@@ -26,3 +26,20 @@ export type CreateWalletResponseType = {
   updated_at: string;
   wallet_id: string;
 };
+
+export type CreateDidKeyParamsType = {
+  method: string;
+  options: {
+    key_type: string;
+  };
+};
+
+export type CreateDidKeyResponseType = {
+  result: {
+    did: string;
+    verkey: string;
+    posture: string;
+    key_type: string;
+    method: string;
+  };
+};

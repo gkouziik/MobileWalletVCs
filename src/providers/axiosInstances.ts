@@ -13,7 +13,6 @@ export const METHODS = { GET, POST, PUT, DELETE, PATCH };
 export const comeTogetherAxios = axios.create({
   baseURL: 'https://api.mt.vsk.gr/',
 });
-console.log(comeTogetherAxios, 'cometogetherAxios');
 export const request = (
   method: string,
   url: string,

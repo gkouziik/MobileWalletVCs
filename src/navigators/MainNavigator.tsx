@@ -33,7 +33,6 @@ const mainNavigatorOptions = ({ navigation }: any): NativeStackNavigationOptions
 const MainNavigator: React.FC<{ isFirstLaunching: boolean }> = ({ isFirstLaunching }) => {
   const Stack = createNativeStackNavigator();
   const userToken = useSelector(getUserToken, shallowEqual);
-  console.log(isFirstLaunching && !userToken, 'synthiki', userToken, isFirstLaunching);
   const navigationTheme: NavigationTheme = {
     ...DefaultTheme,
     colors: { ...DefaultTheme.colors, background: theme.colors.onixShade },

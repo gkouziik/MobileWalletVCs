@@ -13,6 +13,9 @@ import Notification from '../../../assets/svg/notification.svg';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import goBack from '../../../assets/svg/goBack.svg';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import successModal from '../../../assets/svg/successModal.svg';
 
 import { ColorsType } from '../../../styles/types';
 import theme from '../../../styles/theme';
@@ -22,6 +25,7 @@ const svgMap = {
   ['redeem']: Redeem,
   ['Notification']: Notification,
   ['goBack']: goBack,
+  ['successModal']: successModal,
 };
 
 export type SVGType = keyof typeof svgMap;

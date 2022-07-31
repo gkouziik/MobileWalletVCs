@@ -15,7 +15,7 @@ const HomeNavigator: React.FC<Props> = ({ initialRouteName = 'NestedScreen' }) =
       initialRouteName={initialRouteName}
       //initialRouteName is for testing purposes only. Default value is WalletS
     >
-      <Stack.Screen name="HomeScreen" component={NestedScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="NestedScreen" component={NestedScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };
