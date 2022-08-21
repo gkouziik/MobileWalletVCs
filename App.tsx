@@ -10,6 +10,8 @@ import useGetOnboardingStatus from './src/hooks/useGetOnBoardingStatus';
 import MainNavigator from './src/navigators/MainNavigator';
 import GenericModal from './src/components/Components/Modals/GenericModal';
 import { closeGenericModalAction, getGenericModal } from './src/redux/genericModal';
+import { getUserToken } from './src/redux/user';
+import { setAxiosToken } from './src/providers/axiosInstances';
 
 const toastConfig: ToastConfig = {
   /*
@@ -31,9 +33,14 @@ const toastConfig: ToastConfig = {
 
 const App = () => {
   const { isFirstLaunch, isLoading } = useGetOnboardingStatus();
+  const userToken = useSelector(getUserToken);
   const modal = useSelector(getGenericModal, shallowEqual);
 
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    setAxiosToken(userToken);
+  }, [userToken]);
 
   /**
    * Check if the modal is open when the user loads the app.

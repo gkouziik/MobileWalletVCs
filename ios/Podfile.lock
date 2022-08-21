@@ -313,6 +313,8 @@ PODS:
     - React-Core
   - react-native-camera/RN (4.2.1):
     - React-Core
+  - react-native-netinfo (9.3.0):
+    - React-Core
   - react-native-safe-area-context (4.3.1):
     - RCT-Folly
     - RCTRequired
@@ -491,6 +493,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-camera (from `../node_modules/react-native-camera`)
+  - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -588,6 +591,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/blur"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
+  react-native-netinfo:
+    :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -674,6 +679,7 @@ SPEC CHECKSUMS:
   React-logger: ca970551cb7eea2fd814d0d5f6fc1a471eb53b76
   react-native-blur: 490eda060bffa58bcfa0f882bba52bc23e0303de
   react-native-camera: 210a872c84d3aa0982a9223047ef9e743ed694fa
+  react-native-netinfo: f473620bc118d6f44ce65669dd4810a7cfb36a7d
   react-native-safe-area-context: d768fdafd416b4c0bdc7bef4240c9ee53909baf3
   React-perflogger: c9161ff0f1c769993cd11d2751e4331ff4ceb7cd
   React-RCTActionSheet: 2d885b0bea76a5254ef852939273edd8de116180

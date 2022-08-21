@@ -17,7 +17,7 @@ interface WithLoadingWrapperProps {
  */
 const WithLoadingWrapper = ({ children, isLoading }: WithLoadingWrapperProps) => {
   return isLoading ? (
-    <StyledActivityIndicator size={60} color={theme.colors.shadowPurple} />
+    <StyledActivityIndicator size={100} color={theme.colors.shadowPurple} />
   ) : (
     <>{children}</>
   );

@@ -66,7 +66,7 @@ export const setDidKeyAction = () => {
       };
       const { request: createDid } = userApi.single.createDidKey(params);
       const response: CreateDidKeyResponseType = await createDid();
-      console.log(response, 'to response tou create did key');
+      console.log(response.result.did, 'to response tou create did key');
       dispatch(setDidKeyToReduxAction(response.result.did));
     } catch (error) {
       console.log('to error mesa sto create did key post request', error);

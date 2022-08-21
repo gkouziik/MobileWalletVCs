@@ -7,6 +7,7 @@ import CTButton from '../Buttons/CTButton';
 
 export const Container = styled(KeyboardAwareScrollView).attrs({
   showsVerticalScrollIndicator: false,
+  showsHorizontalScrollIndicator: false,
   contentContainerStyle: {
     flexGrow: 1,
     alignItems: 'center',
@@ -38,7 +39,7 @@ export const FormValidationWrapper = styled.View`
 `;
 
 export const ButtonsWrapper = styled.View<{ justify?: 'space-between' | 'center' }>`
-  width: 100%;
+  width: 90%;
   margin-bottom: 30px;
   flex-direction: row;
   align-items: center;

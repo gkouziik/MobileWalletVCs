@@ -1,6 +1,10 @@
 import { ReceiveInvitationParamsType } from '../../providers/connections/types';
-import { ThunkDispatchType } from '../../redux/utils';
+import { simpleAction, ThunkDispatchType } from '../../redux/utils';
 import connectionsApi from '../../providers/connections';
+import { Connection, SET_CONNECTIONS, SetConnectionsAction } from '../connections';
+
+export const setConnectionsAction = (params: Connection[]): SetConnectionsAction =>
+  simpleAction(SET_CONNECTIONS, params);
 
 export const receiveInvitationAction = (
   params: ReceiveInvitationParamsType,
@@ -27,6 +31,7 @@ export const acceptInvitationAction = (
       const { request: acceptInvitationRequest } =
         connectionsApi.single.acceptInvitation(connection_id);
       const response = await acceptInvitationRequest();
+      console.log(response, 'to response sto accept connection');
       onAcceptInvitationCallback();
     } catch (error) {
       onAcceptInvitationCallback(error as Error);

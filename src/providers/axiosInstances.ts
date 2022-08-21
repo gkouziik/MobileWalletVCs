@@ -23,6 +23,7 @@ export const request = (
 ) => {
   const cancelTokenSource = axios.CancelToken.source();
   headers = { ...headers }; //overwrite header with the Accept-Language before every request
+  console.log(params, 'TA PARAMS MESA STO AXIOS INSTANCE', method);
   const config = {
     method: method as Method,
     url,
@@ -37,5 +38,6 @@ export const request = (
 };
 export const setAxiosToken = (token: string): void => {
   const hasToken = token !== '';
+  console.log('HAS TOKEN', hasToken, token);
   comeTogetherAxios.defaults.headers.common.Authorization = hasToken ? `Bearer ${token}` : '';
 };

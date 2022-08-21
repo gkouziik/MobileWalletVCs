@@ -14,3 +14,10 @@ export const HomeTitleInfoContainer = styled.View`
   align-items: flex-start;
   padding-horizontal: 25px;
 `;
+
+export const PendingCredentialsContentScrollView = styled.ScrollView`
+  margin-top: 50px;
+  flex: 1;
+  flex-direction: column;
+  margin-bottom: 75px;
+`;
