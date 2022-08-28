@@ -28,7 +28,7 @@ const CredentialsNavigator: React.FC<Props> = ({ initialRouteName = 'Credentials
       //initialRouteName is for testing purposes only. Default value is WalletS
     >
       <Tab.Screen name="Pending" component={CredentialsScreen} />
-      <Tab.Screen name="Accepted" component={AcceptedCredentialsScreen} />
+      <Tab.Screen name="Stored" component={AcceptedCredentialsScreen} />
     </Tab.Navigator>
   );
 };

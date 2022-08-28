@@ -8,11 +8,12 @@ import tabBarOptions from './MainTabNavigatorTabBarOptions';
 import HomeNavigator from './HomeNavigator';
 import NestedNavigator from './NestedNavigator';
 import CredentialsNavigator from './CredentialsNavigator';
+import PresentProofNavigator from './PresentProofNavigator';
 
 const Tab = createBottomTabNavigator();
 
 interface Props {
-  initialRouteName?: 'Home' | 'NestedTab | Credentials';
+  initialRouteName?: 'Home' | 'NestedTab | Credentials' | 'PresentProof';
 }
 
 const MainTabNavigator: React.FC<Props> = ({ initialRouteName = 'Home' }) => {
@@ -54,6 +55,19 @@ const MainTabNavigator: React.FC<Props> = ({ initialRouteName = 'Home' }) => {
           ),
           tabBarIcon: ({ focused }) => (
             <SVG icon={'Notification'} color={focused ? 'buttonDelete' : 'spaceDark'} />
+          ),
+          ...tabBarOptions,
+        }}
+      />
+      <Tab.Screen
+        name={'Present Proof'}
+        component={PresentProofNavigator}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TabBarLabelText color={focused ? 'buttonDelete' : 'spaceDark'}>___</TabBarLabelText>
+          ),
+          tabBarIcon: ({ focused }) => (
+            <SVG icon={'PresentProof'} color={focused ? 'buttonDelete' : 'spaceDark'} />
           ),
           ...tabBarOptions,
         }}

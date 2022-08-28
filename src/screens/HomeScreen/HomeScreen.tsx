@@ -55,20 +55,4 @@ const HomeScreen: React.FC = () => {
   );
 };
 
-/**
- *  <CTGradientButton
- *                 size="stretchHeight"
- *                 linearColors={['cardinalTeal', 'cardinalPurple']}
- *                 angle={91.85}
- *                 borderRadius={21}
- *                 onPress={handleActions}
- *                 icon="withdraw"
- *                 iconDirection="column"
- *                 outsetColorShadow="cardinalTealShadow"
- *                 title={'wallet:withdraw'}
- *                 textColor="spacePure"
- *                 style={{ flex: 1, paddingRight: 6 }}
- *               />
- */
-
 export default HomeScreen;
