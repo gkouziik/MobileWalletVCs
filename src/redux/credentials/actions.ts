@@ -1,6 +1,8 @@
 import { simpleAction, ThunkDispatchType } from '../../redux/utils';
 import {
   AcceptRequestParams,
+  DELETE_ACCEPTED_LABEL,
+  DeleteAcceptedLabelAction,
   PendingRequest,
   SET_ACCEPTED_LABEL,
   SET_PENDING_REQUESTS,
@@ -18,6 +20,9 @@ export const setPendingRequestsAction = (params: PendingRequest[]): SetPendingRe
 
 export const setAcceptedLabelAction = (params: any): SetAcceptedLabelAction =>
   simpleAction(SET_ACCEPTED_LABEL, params);
+
+export const deleteAcceptedLabelAction = (): DeleteAcceptedLabelAction =>
+  simpleAction(DELETE_ACCEPTED_LABEL);
 
 export const acceptPendingCredentialRequestAction = (params: AcceptRequestParams) => {
   const { onCallback, credential_id, cred_ex_id, holder_did } = params;
@@ -61,18 +66,22 @@ export const storeAcceptedCredentialRequest = (cred_ex_id?: string, credential_i
   };
 };
 
-// export const getUseCredentialsAction = (userToken: string, stopLoading?: () => void) => {
-//   return async (dispatch: ThunkDispatchType): Promise<void> => {
-//     // https://api.mt.vsk.gr/
-//     const headers = {
-//       Authorization: `Bearer ${userToken}`,
-//     };
-//     axios
-//       .get('https://api.mt.vsk.gr/issue-credential-2.0/records', { headers })
-//       .then((response) => {})
-//       .catch((error) => {
-//         console.log(error, 'to error');
-//       })
-//       .finally(() => stopLoading && stopLoading());
-//   };
-// };
+export const sendPresentProofAction = (
+  params: any,
+  pres_ex_id: string,
+  onCallback: (error?: Error) => void
+) => {
+  return async (dispatch: ThunkDispatchType): Promise<void> => {
+    try {
+      const { request: sendProofRequest } = credentialsApi.single.sendProof(
+        { ...params },
+        pres_ex_id
+      );
+      const response = await sendProofRequest();
+      console.log(response, 'TO RESPONSE APO TO SEND PROOF');
+      onCallback();
+    } catch (error) {
+      onCallback(error as Error);
+    }
+  };
+};

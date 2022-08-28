@@ -15,6 +15,7 @@ import NotAvailableProofRequests from './components/NotAvaialbleProofRequests';
 import theme from '../../styles/theme';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
+import ProofCredentialsCard from './components/ProofCredentialsCard';
 
 const ProofPendingCredentials: React.FC = () => {
   const insets = useSafeAreaInsets();
@@ -101,7 +102,7 @@ const ProofPendingCredentials: React.FC = () => {
             }
           >
             {proofRequests?.map((proofRequest: any, index: React.Key | null | undefined) => (
-              <View key={index}></View>
+              <ProofCredentialsCard key={index} proofCredentialsCard={proofRequest} />
             ))}
           </PendingProofCredentialsContentScrollView>
         ) : (

@@ -1,5 +1,6 @@
 export const SET_PENDING_REQUESTS = 'SET_PENDING_REQUESTS';
 export const SET_ACCEPTED_LABEL = 'SET_ACCEPTED_LABEL';
+export const DELETE_ACCEPTED_LABEL = 'DELETE_ACCEPTED_LABEL';
 
 export interface CredentialsState {
   pendingRequests: undefined | PendingRequest[];
@@ -74,6 +75,10 @@ export interface SetPendingRequestsAction {
   payload: PendingRequest[];
 }
 
+export interface DeleteAcceptedLabelAction {
+  type: typeof DELETE_ACCEPTED_LABEL;
+}
+
 export interface SetAcceptedLabelAction {
   type: typeof SET_ACCEPTED_LABEL;
   payload: any;
@@ -90,4 +95,7 @@ export interface AcceptRequestParams {
   ) => void;
 }
 
-export type CredentialsActionTypes = SetPendingRequestsAction | SetAcceptedLabelAction;
+export type CredentialsActionTypes =
+  | SetPendingRequestsAction
+  | SetAcceptedLabelAction
+  | DeleteAcceptedLabelAction;

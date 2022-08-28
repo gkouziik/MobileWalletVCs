@@ -9,6 +9,7 @@ import {
   getUserToken,
   setUserTokenAction,
 } from '../redux/user';
+import { deleteAcceptedLabelAction } from '../redux/credentials/actions';
 
 type UserAuthType = {
   login: (jwtToken?: string) => void;
@@ -36,6 +37,7 @@ export const useAuthentication = (): UserAuthType => {
     await AsyncStorage.clear();
     dispatch(deleteUserTokenAction());
     dispatch(deleteDidKeyAction());
+    dispatch(deleteAcceptedLabelAction());
     setAxiosToken('');
   };
 

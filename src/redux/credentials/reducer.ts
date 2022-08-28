@@ -1,6 +1,7 @@
 import {
   CredentialsActionTypes,
   CredentialsState,
+  DELETE_ACCEPTED_LABEL,
   SET_ACCEPTED_LABEL,
   SET_PENDING_REQUESTS,
 } from './types';
@@ -11,7 +12,6 @@ const initialState: CredentialsState = {
 };
 
 const credentials = (state = initialState, action: CredentialsActionTypes) => {
-  console.log(action.type, action.payload, 'to payload ston reDUCER');
   console.log(state.acceptedRequestsLabels, 'to state');
   switch (action.type) {
     case SET_PENDING_REQUESTS:
@@ -26,6 +26,11 @@ const credentials = (state = initialState, action: CredentialsActionTypes) => {
           ...state.acceptedRequestsLabels,
           { acceptedLabel: action.payload },
         ],
+      };
+    case DELETE_ACCEPTED_LABEL:
+      return {
+        ...state,
+        acceptedRequestsLabels: [{ acceptedLabel: undefined }],
       };
     default:
       return state;

@@ -24,10 +24,12 @@ const AcceptedCredentialsScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const acceptedLabelCredentials = useSelector(getAcceptedLabelCredentials);
   const userToken = useSelector(getUserToken);
+  console.log(userToken);
   const dispatch = useDispatch();
   const [isLoadingPending, setIsLoadingPending] = useState<boolean>(true);
   const [refreshing, setIsRefreshing] = useState<boolean>(false);
 
+  console.log(acceptedLabelCredentials, 'GIANNIS');
   const [isLoadingCompleted, setIsLoadingCompleted] = useState<boolean>(true);
   const pendingCredentials = useSelector(getPendingCredentials);
 
@@ -124,7 +126,7 @@ const AcceptedCredentialsScreen: React.FC = () => {
           });
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        console.log(acceptedLabels, 'TO REFRESH RESPONSE');
+        console.log(acceptedLabels[0].data, 'TO REFRESH RESPONSE');
 
         console.log('End');
       };
