@@ -29,7 +29,7 @@ const NestedScreen: React.FC = () => {
   const connections = useSelector(getConnections);
   const userToken = useSelector(getUserToken);
   const { logout } = useAuthentication();
-  //
+
   // React.useEffect(() => {
   //   logout();
   // }, []);

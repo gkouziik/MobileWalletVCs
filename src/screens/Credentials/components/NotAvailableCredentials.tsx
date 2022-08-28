@@ -4,10 +4,14 @@ import {
   NotAvailableConnectionsContainerView,
 } from './NotAvailableCredentials.style';
 
-const NotAvailableCredentials: React.FC = () => (
+interface Props {
+  isAccepted?: boolean;
+}
+
+const NotAvailableCredentials: React.FC<Props> = ({ isAccepted }) => (
   <NotAvailableConnectionsContainerView>
     <NoConnectionsText style={{ textAlign: 'center' }} color="secondary">
-      You have no Pending Requests yet!
+      {isAccepted ? 'You have no Pending Requests yet!' : 'You have no Accepted Requests yet!'}
     </NoConnectionsText>
   </NotAvailableConnectionsContainerView>
 );

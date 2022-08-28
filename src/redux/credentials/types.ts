@@ -3,7 +3,7 @@ export const SET_ACCEPTED_LABEL = 'SET_ACCEPTED_LABEL';
 
 export interface CredentialsState {
   pendingRequests: undefined | PendingRequest[];
-  acceptedRequestsLabels: [] | string[];
+  acceptedRequestsLabels: [] | any;
 }
 
 export type PendingRequest = {
@@ -76,7 +76,7 @@ export interface SetPendingRequestsAction {
 
 export interface SetAcceptedLabelAction {
   type: typeof SET_ACCEPTED_LABEL;
-  payload: string;
+  payload: any;
 }
 
 export interface AcceptRequestParams {

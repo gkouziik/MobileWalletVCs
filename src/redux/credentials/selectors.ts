@@ -9,5 +9,5 @@ export const getReduxStateSlice = (state: RootState): CredentialsState =>
 export const getPendingCredentials = (state: RootState): undefined | PendingRequest[] =>
   getReduxStateSlice(state).pendingRequests;
 
-export const getAcceptedLabelCredentials = (state: RootState): [] | string[] =>
+export const getAcceptedLabelCredentials = (state: RootState): any =>
   getReduxStateSlice(state).acceptedRequestsLabels;

@@ -12,7 +12,7 @@ import {
 } from './CredentialsScreen.style';
 import { H1, H2 } from '../../components/Components/Headings/Headings.style';
 import { BodyTextRegular } from '../../components/Components/BodyTexts/BodyTexts.style';
-import { getPendingCredentials } from '../../redux/credentials';
+import { getAcceptedLabelCredentials, getPendingCredentials } from '../../redux/credentials';
 import WithLoadingWrapper from '../../components/Wrappers/WithLoadingWrapper';
 import { getUserToken } from '../../redux/user';
 import { setPendingRequestsAction } from '../../redux/credentials/actions';
@@ -85,9 +85,8 @@ const CredentialsScreen: React.FC = () => {
 
   return (
     <ScreenContainer insets={insets}>
-      <StatusBar translucent={true} barStyle="light-content" backgroundColor="transparent" />
       <HomeTitleInfoContainer>
-        <H1 color="spaceShade">Pending Credentials</H1>
+        <H1 color="spaceShade">Credentials</H1>
         <BodyTextRegular color="spacePure">
           All your credentials right in one place!
         </BodyTextRegular>

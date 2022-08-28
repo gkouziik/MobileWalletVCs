@@ -16,7 +16,7 @@ import {
 export const setPendingRequestsAction = (params: PendingRequest[]): SetPendingRequestsAction =>
   simpleAction(SET_PENDING_REQUESTS, params);
 
-export const setAcceptedLabelAction = (params: string): SetAcceptedLabelAction =>
+export const setAcceptedLabelAction = (params: any): SetAcceptedLabelAction =>
   simpleAction(SET_ACCEPTED_LABEL, params);
 
 export const acceptPendingCredentialRequestAction = (params: AcceptRequestParams) => {
@@ -45,17 +45,15 @@ export const storeAcceptedCredentialRequest = (cred_ex_id?: string, credential_i
       const params: StoreCredentialType = {
         credential_id: credential_id?.toString(),
       };
-      console.log('TA PARAMS TOU STORE REQUEST', credential_id, cred_ex_id);
       const { request: storeRequest } = credentialsApi.single.storeCredential(cred_ex_id, {
         ...params,
       });
 
       const responseStore = await storeRequest();
-      console.log(responseStore, 'TO RESPONSE APO TO STORE REQUEST');
-      // if (credential_id) {
-      //   console.log(credential_id, 'TO CREDENTIAL ID');
-      //   dispatch(setAcceptedLabelAction(credential_id.toString()));
-      // }
+      if (credential_id) {
+        console.log(credential_id, 'TO LABEL');
+        dispatch(setAcceptedLabelAction(credential_id?.toString()));
+      }
     } catch (error) {
       console.log(error, 'TO ERROR APO TO STORE REQUEST');
       // TODO vale callback function gia to store
