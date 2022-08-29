@@ -17,6 +17,8 @@ import MainTabNavigator from './MainTabNavigator';
 import ScreeToTestQRCode from '../screens/ScreenToTestQRCode/ScreeToTestQRCode';
 import { BackButton } from './HomeNavigator.style';
 import SVG from '../components/Components/SVG/SVG';
+import StoredCredentialsDetailsScreen from '../screens/Details/StoredCredentialsDetailsScreen';
+import ConnectionDetailsScreen from '../screens/Details/ConnectionDetailsScreen';
 
 const mainNavigatorOptions = ({ navigation }: any): NativeStackNavigationOptions => ({
   headerTransparent: true,
@@ -57,6 +59,16 @@ const MainNavigator: React.FC<{ isFirstLaunching: boolean }> = ({ isFirstLaunchi
             <Stack.Screen
               name={'ScreeToTestQRCode'}
               component={ScreeToTestQRCode}
+              options={mainNavigatorOptions}
+            />
+            <Stack.Screen
+              name={'StoredCredentialsDetails'}
+              component={StoredCredentialsDetailsScreen}
+              options={mainNavigatorOptions}
+            />
+            <Stack.Screen
+              name={'ConnectionDetails'}
+              component={ConnectionDetailsScreen}
               options={mainNavigatorOptions}
             />
           </>

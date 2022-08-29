@@ -11,6 +11,8 @@ import {
 } from '../../../redux/genericModal';
 import { sendPresentProofAction } from '../../../redux/credentials/actions';
 import Toast from 'react-native-toast-message';
+import theme from '../../../styles/theme';
+import { BodyTextRegular } from '../../../components/Components/BodyTexts/BodyTexts.style';
 
 interface Props {
   proofCredentialsCard: any;
@@ -18,6 +20,8 @@ interface Props {
 
 const ProofCredentialsCard: React.FC<Props> = ({ proofCredentialsCard }) => {
   const [isRequestInProcess, setIsRequestInProcess] = useState<boolean>(false);
+
+  console.log('PROOF CREDENTIAL CARD', proofCredentialsCard);
 
   const onCallback = (error?: Error) => {
     console.log('giati den mpainei sto callback');
@@ -100,13 +104,91 @@ const ProofCredentialsCard: React.FC<Props> = ({ proofCredentialsCard }) => {
           height: 70,
           marginTop: 13,
           marginBottom: 5,
-          backgroundColor: 'red',
+          backgroundColor:
+            proofCredentialsCard.state === 'request-received'
+              ? theme.colors.candyRed
+              : theme.colors.bidGreen,
         }}
       />
       <View style={{ flex: 0.98 }}>
         <H3 style={{ alignContent: 'center', alignSelf: 'center', marginTop: 5 }} color="primary">
-          {proofCredentialsCard.state}
+          Proof Request
         </H3>
+        {proofCredentialsCard?.state === 'request-received' ? (
+          <>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                marginLeft: 7,
+                marginRight: 5,
+                marginTop: 10,
+              }}
+            >
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                Company: Alpha Corp
+              </BodyTextRegular>
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                Status: {proofCredentialsCard?.state}
+              </BodyTextRegular>
+            </View>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                marginLeft: 7,
+                marginRight: 5,
+                marginTop: 10,
+              }}
+            >
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                Comment: {proofCredentialsCard?.pres_request?.comment}
+              </BodyTextRegular>
+            </View>
+          </>
+        ) : (
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              marginLeft: 7,
+              marginRight: 5,
+              marginTop: 10,
+            }}
+          >
+            <BodyTextRegular
+              bold
+              style={{
+                color: theme.colors.primary,
+              }}
+            >
+              Company: Alpha Corp
+            </BodyTextRegular>
+            <BodyTextRegular
+              bold
+              style={{
+                color: theme.colors.primary,
+              }}
+            >
+              Status: {proofCredentialsCard?.state}
+            </BodyTextRegular>
+          </View>
+        )}
       </View>
     </ProofCredentialContainerTouchable>
   );

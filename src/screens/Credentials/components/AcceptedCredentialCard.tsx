@@ -1,39 +1,25 @@
-import React from 'react';
-import { Connection } from '../../../redux/connections';
-import { View, Text } from 'react-native';
-import { ConnectionCardContainerTouchable } from './ConnectionCard.style';
+import React, { useState } from 'react';
+import { ConnectionCardContainerTouchable } from './AcceptedCredentialCard.style';
+import { View } from 'react-native';
 import { H3 } from '../../../components/Components/Headings/Headings.style';
 import { BodyTextRegular } from '../../../components/Components/BodyTexts/BodyTexts.style';
 import theme from '../../../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {
-  connection: Connection;
+  acceptedCredentialCard: any;
 }
 
-const ConnectionCard: React.FC<Props> = ({ connection }) => {
+const AcceptedCredentialCard: React.FC<Props> = ({ acceptedCredentialCard }) => {
   const navigation = useNavigation();
 
-  const date = new Date(connection?.updated_at);
-
-  function padTo2Digits(num: number) {
-    return num.toString().padStart(2, '0');
-  }
-
-  function formatDate(date: Date) {
-    return [
-      date.getFullYear(),
-      padTo2Digits(date.getMonth() + 1),
-      padTo2Digits(date.getDate()),
-    ].join('-');
-  }
-
+  console.log(acceptedCredentialCard.data, 'GIA KATHE ENA');
   return (
     <ConnectionCardContainerTouchable
       onPress={() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        navigation.navigate('ConnectionDetails', { details: connection });
+        navigation.navigate('StoredCredentialsDetails', { details: acceptedCredentialCard.data });
       }}
     >
       <View
@@ -50,7 +36,7 @@ const ConnectionCard: React.FC<Props> = ({ connection }) => {
       />
       <View style={{ flex: 0.98 }}>
         <H3 style={{ alignContent: 'center', alignSelf: 'center', marginTop: 5 }} color="bidGreen">
-          Active Connection
+          Stored Credential
         </H3>
         <View
           style={{
@@ -67,15 +53,7 @@ const ConnectionCard: React.FC<Props> = ({ connection }) => {
               color: theme.colors.primary,
             }}
           >
-            Date: {formatDate(date)}
-          </BodyTextRegular>
-          <BodyTextRegular
-            bold
-            style={{
-              color: theme.colors.primary,
-            }}
-          >
-            State: {connection?.state}
+            Email: {acceptedCredentialCard?.data?.cred_value?.credentialSubject?.email}
           </BodyTextRegular>
         </View>
         <View
@@ -93,7 +71,7 @@ const ConnectionCard: React.FC<Props> = ({ connection }) => {
               color: theme.colors.primary,
             }}
           >
-            Company name: {connection?.their_label}
+            Job Title: {acceptedCredentialCard?.data?.cred_value?.credentialSubject?.jobTitle}
           </BodyTextRegular>
           <BodyTextRegular
             bold
@@ -101,7 +79,7 @@ const ConnectionCard: React.FC<Props> = ({ connection }) => {
               color: theme.colors.primary,
             }}
           >
-            Role: {connection?.their_role}
+            Label: {acceptedCredentialCard?.data?.record_id}
           </BodyTextRegular>
         </View>
       </View>
@@ -109,4 +87,4 @@ const ConnectionCard: React.FC<Props> = ({ connection }) => {
   );
 };
 
-export default ConnectionCard;
+export default AcceptedCredentialCard;

@@ -26,7 +26,7 @@ const CredentialsScreen: React.FC = () => {
   const dispatch = useDispatch();
   const [isLoadingPending, setIsLoadingPending] = useState<boolean>(true);
   const [refreshing, setIsRefreshing] = useState<boolean>(false);
-
+  console.log('EDW REEE');
   const [isLoadingCompleted, setIsLoadingCompleted] = useState<boolean>(true);
   const pendingCredentials = useSelector(getPendingCredentials);
 
@@ -86,7 +86,7 @@ const CredentialsScreen: React.FC = () => {
   return (
     <ScreenContainer insets={insets}>
       <HomeTitleInfoContainer>
-        <H1 color="spaceShade">Credentials</H1>
+        <H1 color="spaceShade">Pending Credentials</H1>
         <BodyTextRegular color="spacePure">
           All your credentials right in one place!
         </BodyTextRegular>

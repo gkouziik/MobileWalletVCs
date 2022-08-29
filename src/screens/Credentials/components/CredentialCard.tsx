@@ -21,6 +21,8 @@ import {
   acceptPendingCredentialRequestAction,
   storeAcceptedCredentialRequest,
 } from '../../../redux/credentials/actions';
+import { BodyTextRegular } from '../../../components/Components/BodyTexts/BodyTexts.style';
+import theme from '../../../styles/theme';
 
 interface Props {
   credential: PendingRequest;
@@ -98,6 +100,19 @@ const CredentialCard: React.FC<Props> = ({ credential }) => {
     dispatch(openGenericModalAction(params));
   };
 
+  function padTo2Digits(num: number) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function formatDate(date: Date) {
+    return [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-');
+  }
+
+  const date = new Date(credential.cred_ex_record.updated_at);
   return (
     <>
       {credential.cred_ex_record.state === 'offer-received' ? (
@@ -113,14 +128,66 @@ const CredentialCard: React.FC<Props> = ({ credential }) => {
               marginBottom: 5,
               backgroundColor: 'red',
             }}
-          ></View>
+          />
           <View style={{ flex: 0.98 }}>
             <H3
               style={{ alignContent: 'center', alignSelf: 'center', marginTop: 5 }}
-              color="primary"
+              color="candyRed"
             >
-              Alpha Corp
+              Pending Credential
             </H3>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                marginLeft: 7,
+                marginRight: 5,
+                marginTop: 10,
+              }}
+            >
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                Company: Alpha Corp
+              </BodyTextRegular>
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                Role: {credential.cred_ex_record.role}
+              </BodyTextRegular>
+            </View>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                marginLeft: 7,
+                marginRight: 5,
+                marginTop: 10,
+              }}
+            >
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                State: {credential.cred_ex_record.state}
+              </BodyTextRegular>
+              <BodyTextRegular
+                bold
+                style={{
+                  color: theme.colors.primary,
+                }}
+              >
+                Date: {formatDate(date)}
+              </BodyTextRegular>
+            </View>
           </View>
         </ConnectionCardContainerTouchable>
       ) : null}

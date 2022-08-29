@@ -15,23 +15,19 @@ import { BodyTextRegular } from '../../components/Components/BodyTexts/BodyTexts
 import { getAcceptedLabelCredentials, getPendingCredentials } from '../../redux/credentials';
 import WithLoadingWrapper from '../../components/Wrappers/WithLoadingWrapper';
 import { getUserToken } from '../../redux/user';
-import { setPendingRequestsAction } from '../../redux/credentials/actions';
 import theme from '../../styles/theme';
 import NotAvailableCredentials from './components/NotAvailableCredentials';
-import CredentialCard from './components/CredentialCard';
+import AcceptedCredentialCard from './components/AcceptedCredentialCard';
 
 const AcceptedCredentialsScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const acceptedLabelCredentials = useSelector(getAcceptedLabelCredentials);
   const userToken = useSelector(getUserToken);
-  console.log(userToken);
   const dispatch = useDispatch();
   const [isLoadingPending, setIsLoadingPending] = useState<boolean>(true);
   const [refreshing, setIsRefreshing] = useState<boolean>(false);
-
-  console.log(acceptedLabelCredentials, 'GIANNIS');
+  const [storedCredentials, setStoredCredentials] = useState<any>([]);
   const [isLoadingCompleted, setIsLoadingCompleted] = useState<boolean>(true);
-  const pendingCredentials = useSelector(getPendingCredentials);
 
   let acceptedLabels: void | any[] = [];
 
@@ -78,8 +74,7 @@ const AcceptedCredentialsScreen: React.FC = () => {
           });
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        console.log(acceptedLabels[0].data, 'TA ACCEPTED LABELS RESPONSE');
-
+        setStoredCredentials((prevState: any) => [...prevState, acceptedLabels]);
         console.log('End');
       };
       mapLoop();
@@ -124,9 +119,7 @@ const AcceptedCredentialsScreen: React.FC = () => {
           .finally(() => {
             setIsRefreshing(false);
           });
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        console.log(acceptedLabels[0].data, 'TO REFRESH RESPONSE');
+        setStoredCredentials((prevState: any) => [...prevState, acceptedLabels]);
 
         console.log('End');
       };
@@ -141,13 +134,13 @@ const AcceptedCredentialsScreen: React.FC = () => {
   return (
     <ScreenContainer insets={insets}>
       <HomeTitleInfoContainer>
-        <H1 color="spaceShade">Credentials</H1>
+        <H1 color="spaceShade">Stored Credentials</H1>
         <BodyTextRegular color="spacePure">
           All your credentials right in one place!
         </BodyTextRegular>
       </HomeTitleInfoContainer>
       <WithLoadingWrapper isLoading={isLoadingPending}>
-        {pendingCredentials && pendingCredentials.length > 0 ? (
+        {storedCredentials?.length && storedCredentials && storedCredentials[0]?.length > 0 ? (
           <PendingCredentialsContentScrollView
             refreshControl={
               <RefreshControl
@@ -157,11 +150,11 @@ const AcceptedCredentialsScreen: React.FC = () => {
               />
             }
           >
-            {acceptedLabels?.map((acceptedLabel, index) => (
-              <View>
-                <Text>Something</Text>
-              </View>
-            ))}
+            {storedCredentials[0]?.map(
+              (storedCredential: any, index: React.Key | null | undefined) => (
+                <AcceptedCredentialCard acceptedCredentialCard={storedCredential} key={index} />
+              )
+            )}
           </PendingCredentialsContentScrollView>
         ) : (
           <PendingCredentialsContentScrollView
