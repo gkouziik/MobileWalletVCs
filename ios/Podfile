@@ -1,14 +1,21 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+permissions_path = '../node_modules/react-native-permissions/ios'
 
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
+
 
 target 'mobileWallet' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
   flags = get_default_flags()
+
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+  pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
 
   use_react_native!(
     :path => config[:reactNativePath],

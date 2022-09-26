@@ -1,7 +1,10 @@
 import {
+  DELETE_DID_KEY,
   DELETE_USER_TOKEN,
+  SET_DID_KEY,
   SET_LOADING,
   SET_USER_TOKEN,
+  SET_WALLET_PRE_CREATION_DATA,
   UserActionTypes,
   UserState,
 } from './types';
@@ -9,6 +12,9 @@ import {
 const initialState: UserState = {
   userToken: '',
   isLoading: true,
+  walletLabel: '',
+  walletRetrievePassword: '',
+  didKey: undefined,
 };
 
 const user = (state = initialState, action: UserActionTypes) => {
@@ -27,6 +33,22 @@ const user = (state = initialState, action: UserActionTypes) => {
       return {
         ...state,
         userToken: '',
+      };
+    case DELETE_DID_KEY:
+      return {
+        ...state,
+        didKey: undefined,
+      };
+    case SET_WALLET_PRE_CREATION_DATA:
+      return {
+        ...state,
+        walletRetrievePassword: action.payload.walletRetrievePassword,
+        walletLabel: action.payload.walletLabel,
+      };
+    case SET_DID_KEY:
+      return {
+        ...state,
+        didKey: action.payload,
       };
     default:
       return state;

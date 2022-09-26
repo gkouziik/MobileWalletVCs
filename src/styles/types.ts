@@ -1,3 +1,3 @@
-import theme from "src/styles/theme";
+import theme from '../styles/theme';
 
 export type ColorsType = keyof typeof theme.colors;
